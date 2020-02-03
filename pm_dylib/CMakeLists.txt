@@ -57,13 +57,13 @@ if(UNIX)
                              ${COREMIDI_LIB} ${CORESERVICES_LIB}
         CACHE INTERNAL "")
 
-    set(JAVAVM_LIB "${FRAMEWORK_PATH}/JavaVM.framework")
-    set(JAVA_INCLUDE_PATHS ${JAVAVM_LIB}/Headers)
+    #set(JAVAVM_LIB "${FRAMEWORK_PATH}/JavaVM.framework")
+    #set(JAVA_INCLUDE_PATHS ${JAVAVM_LIB}/Headers)
     set(INSTALL_NAME_DIR "/usr/local/lib")
     message(STATUS "SYSROOT: " ${CMAKE_OSX_SYSROOT})
   else(APPLE)
     # LINUX settings...
-    include(FindJNI)
+    #include(FindJNI)
     # message(STATUS "JAVA_JVM_LIB_PATH is " ${JAVA_JVM_LIB_PATH})
     # message(STATUS "JAVA_INCLUDE_PATH is " ${JAVA_INCLUDE_PATH})
     # note: should use JAVA_JVM_LIB_PATH, but it is not set properly
@@ -75,11 +75,11 @@ if(UNIX)
     # JAVA_INCLUDE_PATH2; if no, then we need to make both JAVA_INCLUDE_PATH
     # and JAVA_INCLUDE_PATH2 set by user (will need clear documentation
     # because JAVA_INCLUDE_PATH2 is pretty obscure)
-    set(JAVA_INCLUDE_PATH  ${JAVA_INCLUDE_PATH-UNKNOWN}
-        CACHE STRING "where to find Java SDK include directory")
-    set(JAVA_INCLUDE_PATHS ${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH}/linux)
+    #set(JAVA_INCLUDE_PATH  ${JAVA_INCLUDE_PATH-UNKNOWN}
+     #   CACHE STRING "where to find Java SDK include directory")
+    #set(JAVA_INCLUDE_PATHS ${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH}/linux)
     # libjvm.so is found relative to JAVA_INCLUDE_PATH:
-    set(JAVAVM_LIB ${JAVA_INCLUDE_PATH}/../jre/lib/i386/client/libjvm.so)
+    #set(JAVAVM_LIB ${JAVA_INCLUDE_PATH}/../jre/lib/i386/client/libjvm.so)
 
     set(LINUXSRC pmlinuxalsa pmlinux finddefault)
     prepend_path(LIBSRC ../pm_linux/ ${LINUXSRC})
@@ -92,11 +92,11 @@ else(UNIX)
     # /MDd is multithread debug DLL, /MTd is multithread debug
     # /MD is multithread DLL, /MT is multithread 
     
-    include(FindJNI)
+    #include(FindJNI)
     # note: should use JAVA_JVM_LIB_PATH, but it is not set properly
-    set(JAVAVM_LIB ${JAVA_INCLUDE_PATH}/../lib/jvm.lib)
+    #set(JAVAVM_LIB ${JAVA_INCLUDE_PATH}/../lib/jvm.lib)
 
-    set(JAVA_INCLUDE_PATHS ${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH2})
+    #set(JAVA_INCLUDE_PATHS ${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH2})
     # message(STATUS "JAVA_INCLUDE_PATHS: " ${JAVA_INCLUDE_PATHS})
 
     set(WINSRC pmwin pmwinmm)
@@ -106,7 +106,7 @@ else(UNIX)
     # message(STATUS "JAVAVM_LIB: " ${JAVAVM_LIB})
   endif(WIN32)
 endif(UNIX)
-set(JNI_EXTRA_LIBS ${PM_NEEDED_LIBS} ${JAVAVM_LIB})
+#set(JNI_EXTRA_LIBS ${PM_NEEDED_LIBS} ${JAVAVM_LIB})
 
 # this completes the list of library sources by adding shared code
 set(SHARED_FILES pmutil portmidi)
